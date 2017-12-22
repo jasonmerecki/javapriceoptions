@@ -11,27 +11,26 @@ public class BlackLikeTest {
 	@Test
 	public void testBlackCall1() {
 		// 26.65	 option price actual
-		// 19.48% implied volatility
+		// 19.48% implied volatility according to Yahoo! Finance
 		
-		// spot = 1,177.62
-		// strike = 1195
-		// January 19, 2018 expiry
-		// dec 20, 2017 today
-		// 12 + 19 = 31 days, = 0.084931506849315
-		// volatility 0.20
-		// rate = 0.0135
-		
-		// fintools says 19.8426 call, spreadsheet says 20.2961667
-		// my formula says 19.75236950057615
+		// results of various calculators
+		// http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
+		// fintools 19.8426 call
+		// https://www.mystockoptions.com/black-scholes.cfm
+		// mystockoptions 20.296
+		// https://www.erieri.com/blackscholes
+		// erieri.com 20.2961
+		// Excel spreadsheet  20.2961667
 		
 		double s = 1177.62d;
 		double k = 1195.00d;
-		double t = 0.084931506849315d;
+		double t = 0.084931506849315d; // date 12/19/2017, expiration 1/19/2018, 31 days
 		double v = 0.20d;
 		double r = 0.0135d;
 		double q = 0.0d;
 		double bsprice = BlackLike.BlackScholes("C", s, k, t, v, r, q);
 		System.out.println("dldldl bsprice=" + bsprice);
+		assertEquals(19.75236950057615d, bsprice, 0.00000000000d);
 	}
 
 }
