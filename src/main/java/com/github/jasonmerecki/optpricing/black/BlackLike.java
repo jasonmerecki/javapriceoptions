@@ -17,19 +17,21 @@ public class BlackLike {
 		double re = Math.exp(-r*t), qe = Math.exp(-q*t);
 		double d1 = d1(s, k, t, v, r, q);
 		double d2 = d2(d1, v, t);
-		double p1, p2, p3;
+		double p1, nd1, nd2, p2;
 		if ("C".equals(type)) {
-			p1 = s * qe;
-			p2 = StandardNormal.cdf(d1) - (k * qe);
-			p3 = StandardNormal.cdf(d2);
+			nd1 = StandardNormal.cdf(d1);
+			nd2 = StandardNormal.cdf(d2);
+			p1 = (s * qe) * nd1;
+			p2 = (k * qe) * nd2;
 		} else if ("P".equals(type)) {
-			p1 = k * re;
-			p2 = StandardNormal.cdf(-d2) - (s * qe);
-			p3 = StandardNormal.cdf(-d1);
+			nd1 = StandardNormal.cdf(-d2);
+			nd2 = StandardNormal.cdf(-d1);
+			p1 = (k * re) * nd1;
+			p2 = (s * qe) * nd2;
 		} else {
 			return 0.0d;
 		}
-		double bsprice = p1 * p2 * p3;
+		double bsprice = p1 - p2;
 		return bsprice;
 	}
 	

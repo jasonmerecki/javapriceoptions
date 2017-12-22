@@ -20,6 +20,10 @@ public class BlackLikeTest {
 		// 12 + 19 = 31 days, = 0.084931506849315
 		// volatility 0.20
 		// rate = 0.0135
+		
+		// fintools says 19.8426 call, spreadsheet says 20.2961667
+		// my formula says 19.75236950057615
+		
 		double s = 1177.62d;
 		double k = 1195.00d;
 		double t = 0.084931506849315d;
