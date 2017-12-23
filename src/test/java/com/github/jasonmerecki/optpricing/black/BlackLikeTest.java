@@ -30,7 +30,7 @@ public class BlackLikeTest {
 		double q = 0.0d;
 		double bsprice = BlackLike.BlackScholes("C", s, k, t, v, r, q);
 		System.out.println("dldldl bsprice=" + bsprice);
-		assertEquals(19.75236950057615d, bsprice, 0.00000000000d);
+		assertEquals(20.29616303951127d, bsprice, 0.00000000000d);
 	}
 
 }
