@@ -10,17 +10,12 @@ public class BlackLikeTest {
 
 	@Test
 	public void testBlackCall1() {
-		// 26.65	 option price actual
-		// 19.48% implied volatility according to Yahoo! Finance
-		
-		// results of various calculators
-		// http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
-		// fintools 19.8426 call
-		// https://www.mystockoptions.com/black-scholes.cfm
-		// mystockoptions 20.296
-		// https://www.erieri.com/blackscholes
-		// erieri.com 20.2961
-		// Excel spreadsheet  20.2961667
+		// Result       /  Online calculator
+		// ---------------------------------------------
+		// 20.037       / https://www.mystockoptions.com/black-scholes.cfm
+		// 20.2961      / https://www.erieri.com/blackscholes
+		// 20.2961667   / (excel spreadsheet)
+		// 20.2961      / http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
 		
 		double s = 1177.62d;
 		double k = 1195.00d;
@@ -29,8 +24,28 @@ public class BlackLikeTest {
 		double r = 0.0135d;
 		double q = 0.0d;
 		double bsprice = BlackLike.BlackScholes("C", s, k, t, v, r, q);
-		System.out.println("dldldl bsprice=" + bsprice);
+		System.out.println("testBlackCall1 bsprice=" + bsprice);
 		assertEquals(20.29616303951127d, bsprice, 0.00000000000d);
 	}
 
+	@Test
+	public void testBlackPut1() {
+		// Result       /  Online calculator
+		// ---------------------------------------------
+		// n/a          / https://www.mystockoptions.com/black-scholes.cfm
+		// 0.2708       / https://www.erieri.com/blackscholes
+		// ?????        / (excel spreadsheet)
+		// 0,2708       / http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
+		
+		double s = 214.76d;
+		double k = 190.00d;
+		double t = 0.084931506849315d; // date 12/19/2017, expiration 1/19/2018, 31 days
+		double v = 0.25d;
+		double r = 0.0135d;
+		double q = 0.0d;
+		double bsprice = BlackLike.BlackScholes("P", s, k, t, v, r, q);
+		System.out.println("testBlackPut1 bsprice=" + bsprice);
+		assertEquals(0.2707906395245452d, bsprice, 0.00000000000d);
+	}
+	
 }
