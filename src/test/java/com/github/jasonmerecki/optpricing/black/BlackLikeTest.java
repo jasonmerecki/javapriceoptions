@@ -48,4 +48,21 @@ public class BlackLikeTest {
 		assertEquals(0.2707906395245452d, bsprice, 0.00000000000d);
 	}
 	
+	@Test
+	public void testBjerkStensCall1() {
+		// Result       /  Online calculator
+		// ---------------------------------------------
+		// 19.082612   / (excel spreadsheet)
+
+		double s = 1177.62d;
+		double k = 1195.00d;
+		double t = 0.084931506849315d; // date 12/19/2017, expiration 1/19/2018, 31 days
+		double v = 0.20d;
+		double r = 0.0135d;
+		double q = 0.03d;
+		double bsprice = BlackLike.BjerkStensPrice("C", s, k, t, v, r, q);
+		System.out.println("testBjerkStensCall1 bsprice=" + bsprice);
+		assertEquals(19.082618995152643d, bsprice, 0.00000000000d);
+	}
+	
 }
