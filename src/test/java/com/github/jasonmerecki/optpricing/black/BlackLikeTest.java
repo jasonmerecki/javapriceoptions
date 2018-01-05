@@ -52,7 +52,9 @@ public class BlackLikeTest {
 	public void testBjerkStensCall1() {
 		// Result       /  Online calculator
 		// ---------------------------------------------
-		// 19.082612   / (excel spreadsheet)
+		// 19.0638      / http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
+		// 20.422384    / http://janroman.dhis.org/calc/BjerksundStensland.php
+		// 19.082612    / (excel spreadsheet)
 
 		double s = 1177.62d;
 		double k = 1195.00d;
@@ -69,6 +71,8 @@ public class BlackLikeTest {
 	public void testBjerkStensPut1() {
 		// Result       /  Online calculator
 		// ---------------------------------------------
+		// 22.0534      / http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
+		// 20.702770    / http://janroman.dhis.org/calc/BjerksundStensland.php
 		// 22.0387792   / (excel spreadsheet)
 
 		double s = 1177.62d;
