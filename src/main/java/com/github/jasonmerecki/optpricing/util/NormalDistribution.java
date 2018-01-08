@@ -4,7 +4,6 @@ package com.github.jasonmerecki.optpricing.util;
 // http://mathworld.wolfram.com/NormalDistribution.html
 // http://mathworld.wolfram.com/RegularizedGammaFunction.html
 // http://mathworld.wolfram.com/Erf.html
-// https://introcs.cs.princeton.edu/java/22library/BlackScholes.java.html
 // https://introcs.cs.princeton.edu/java/21function/ErrorFunction.java.html
 
 public class NormalDistribution {

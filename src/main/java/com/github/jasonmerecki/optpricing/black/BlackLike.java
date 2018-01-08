@@ -4,6 +4,7 @@ import static  com.github.jasonmerecki.optpricing.util.NormalDistribution.Standa
 
 // references:
 // http://www.macroption.com/black-scholes-formula/
+// https://introcs.cs.princeton.edu/java/22library/BlackScholes.java.html
 
 public class BlackLike {
 
