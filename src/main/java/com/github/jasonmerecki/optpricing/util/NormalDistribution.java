@@ -5,6 +5,7 @@ package com.github.jasonmerecki.optpricing.util;
 // http://mathworld.wolfram.com/RegularizedGammaFunction.html
 // http://mathworld.wolfram.com/Erf.html
 // https://introcs.cs.princeton.edu/java/21function/ErrorFunction.java.html
+// https://github.com/chobie/go-gaussian/blob/master/gaussian.go
 
 public class NormalDistribution {
 	private static final double TOO_MANY_DEVIATIONS = 8d; // Apache commons Math uses 40.

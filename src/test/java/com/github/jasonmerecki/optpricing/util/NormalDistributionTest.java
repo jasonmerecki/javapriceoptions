@@ -104,6 +104,17 @@ public class NormalDistributionTest {
     }
     
     @Test
+    public void testCdf2() {
+		NormalDistribution nd = new NormalDistribution(34.3d, 3.22d);
+        double x = 37.8d;
+        double cdf = nd.cdf(x);
+        double expectedCdf = 0.8614719786451529d;
+        double ulp = Math.ulp(expectedCdf); 
+        System.out.println("for mean/stdev 34.3d, 3.22d, x=" + x + " the cdf=" + cdf + " expected=" + expectedCdf + " within " + ulp);
+        assertEquals(expectedCdf, cdf, ulp);
+    }
+    
+    @Test
     public void testCdfVsApache() {
 		NormalDistribution nd = new NormalDistribution();
         double x = 0.56d;
@@ -112,6 +123,18 @@ public class NormalDistributionTest {
         double expectedCdf = and.cumulativeProbability(x);
         double ulp = 1.0e-7; 
         System.out.println("for x=" + x + " the cdf=" + cdf + " expected(from Apache)=" + expectedCdf + " within " + ulp);
+        assertEquals(expectedCdf, cdf, ulp);
+    }
+    
+    @Test
+    public void testCdfVsApache2() {
+		NormalDistribution nd = new NormalDistribution(34.3d, 3.22d);
+        double x = 37.8d;
+        double cdf = nd.cdf(x);
+        org.apache.commons.math3.distribution.NormalDistribution and = new org.apache.commons.math3.distribution.NormalDistribution(34.3d, 3.22d);
+        double expectedCdf = and.cumulativeProbability(x);
+        double ulp = 1.0e-7; 
+        System.out.println("for mean/stdev 34.3d, 3.22d, x=" + x + " the cdf=" + cdf + " expected(from Apache)=" + expectedCdf + " within " + ulp);
         assertEquals(expectedCdf, cdf, ulp);
     }
     
