@@ -30,8 +30,9 @@ public class BlackLike {
 		}
 		
 		double re = Math.exp(-r*t), qe = Math.exp(-q*t);
-		double d1 = d1(s, k, t, v, r, q);
-		double d2 = d2(d1, v, t);
+		double vt = (v * (Math.sqrt(t)));
+		double d1 = d1(s, k, t, v, r, q, vt);
+		double d2 = d2(d1, vt);
 		double nd1, nd2;
 		
 		d1 = sign * d1; 
@@ -43,14 +44,13 @@ public class BlackLike {
 		return bsprice;
 	}
 	
-	private static double d1(double s, double k, double t, double v, double r, double q) {
+	private static double d1(double s, double k, double t, double v, double r, double q, double vt) {
 		double d1 = Math.log(s/k) +  (t * (r - q + ((v * v) * 0.5d) ));
-		d1 = d1 / (v * (Math.sqrt(t)));
+		d1 = d1 / vt;
 		return d1;
 	}
 	
-	private static double d2(double d1, double v, double t) {
-		double vt = (v * (Math.sqrt(t)));
+	private static double d2(double d1, double vt) {
 		double d2 = d1 - vt;
 		return d2;
 	}
