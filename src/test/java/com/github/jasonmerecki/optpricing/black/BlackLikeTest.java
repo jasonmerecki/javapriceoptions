@@ -49,6 +49,20 @@ public class BlackLikeTest {
 	}
 	
 	@Test
+	public void testBlackImpVol1() {
+		double p = 20.29616;
+		double s = 1177.62d;
+		double k = 1195.00d;
+		double t = 0.084931506849315d; // date 12/19/2017, expiration 1/19/2018, 31 days
+		double r = 0.0135d;
+		double q = 0.0d;
+		double bsiv = BlackLike.bsImpliedVol("C", p, s, k, r, t, 0.5, q);
+		System.out.println("testBlackImpVol1 bsiv=" + bsiv);
+		assertEquals(0.20d, bsiv, BlackLike.IV_PRECISION);
+	}
+	
+	
+	@Test
 	public void testBjerkStensCall1() {
 		// Result       /  Online calculator
 		// ---------------------------------------------

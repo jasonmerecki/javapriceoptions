@@ -7,6 +7,8 @@ import static  com.github.jasonmerecki.optpricing.util.NormalDistribution.Standa
 // https://introcs.cs.princeton.edu/java/22library/BlackScholes.java.html
 
 public class BlackLike {
+	
+	public static final double IV_PRECISION = 0.00001d;
 
 	// type == C(all) or P(ut)
 	// s = stock price (current), k = strike price
@@ -118,6 +120,44 @@ public class BlackLike {
 	    	
 	    	double psphi = Math.exp(lambda * t) * Math.pow(s, gamma) * (cdf(-tmp1) - (Math.pow(X / s, K)) * cdf(-tmp2));
 		return psphi;
+	}
+	
+	// Greeks
+	public static double bsVega(String type, double s, double k, double v,
+			double t, double r, double q) {
+		double m = 0.01;
+		double val1 = priceBlackScholes(type, s, k, t, v, r, q);
+		double val2 = priceBlackScholes(type, s, k, t, v + m, r, q);
+		double vega = (val2 - val1) / m / 100d;
+		return vega;
+	}
+	
+	public static double bjVega(String type, double s, double k, double v,
+			double t, double r, double q) {
+		double m = 0.01;
+		double val1 = priceBjerkStens(type, s, k, t, v, r, q);
+		double val2 = priceBjerkStens(type, s, k, t, v + m, r, q);
+		double vega = (val2 - val1) / m / 100d;
+		return vega;
+	}
+	
+
+	// Implied vol
+	public static double bsImpliedVol(String type, double p, double s, 
+			double k, double r, double t, double v, double q) {
+		v = v == 0d ? 0.5 : v;
+		double errlimit = IV_PRECISION;
+		double maxloops = 100;
+		double dv = errlimit + 1;
+		double n = 0;
+		while (Math.abs(dv) > errlimit && n < maxloops) {
+			double difval = priceBlackScholes(type, s, k, t, v, r, q) - p;
+			double v1 = bsVega(type, s, k, v, t, r, q) / 0.01;
+			dv = difval / v1;
+			v = v - dv;
+			n++;
+		}
+		return n < maxloops ? v : Double.NaN;
 	}
 
 }
