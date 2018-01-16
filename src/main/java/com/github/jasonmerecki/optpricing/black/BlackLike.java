@@ -154,7 +154,8 @@ public class BlackLike {
 	    double zo = ("P".equals(type)) ? -1d : 0d;
 	    double vt = (v * (Math.sqrt(t)));
 	    double d1 = d1(s, k, t, v, r, q, vt);
-	    double delta = drq * (cdf(d1) - zo);
+	    double cdfd1 = cdf(d1);
+	    double delta = drq * (cdfd1 - zo);
 	    return delta;
 	}
 	
