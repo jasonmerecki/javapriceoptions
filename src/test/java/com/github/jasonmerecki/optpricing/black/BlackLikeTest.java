@@ -97,6 +97,39 @@ public class BlackLikeTest {
 	}
 	
 	@Test
+	public void testBsPutGreeks() {
+		
+		// http://www.cboe.com/framed/IVolframed.aspx?content=http%3a%2f%2fcboe.ivolatility.com%2fcalc%2findex.j%3fcontract%3dAE172F0B-BFE3-4A3D-B5A3-6085B2C4F088&sectionName=SEC_TRADING_TOOLS&title=CBOE%20-%20IVolatility%20Services
+		// delta = -0.0415, gamma = 0.0057, vega = 0.0556, theta = -0.0221, rho = -0.0078
+		// http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
+		// delta = -0.0415, gamma = 0.0057, vega = 0.0556, theta = -0.0221, rho = -0.0078
+	
+		double s = 214.76d;
+		double k = 190.00d;
+		double t = 0.084931506849315d; // date 12/19/2017, expiration 1/19/2018, 31 days
+		double r = 0.0135d;
+		double q = 0.0d;
+		double v = 0.25d;
+		String type = "P";
+		double delta = BlackLike.bsDelta(type, s, k, v, t, r, q);
+		double gamma = BlackLike.bsGamma(type, s, k, v, t, r, q);
+		double vega = BlackLike.bsVega(type, s, k, v, t, r, q);
+		double theta = BlackLike.bsTheta(type, s, k, v, t, r, q);
+		double rho = BlackLike.bsRho(type, s, k, v, t, r, q);
+		System.out.println("testBsPutGreeks"
+				+ " delta=" + delta
+				+ ", gamma=" + gamma
+				+ ", vega=" + vega
+				+ ", theta=" + theta
+				+ ", rho=" + rho);
+		assertEquals(-0.04150, delta, 0.0001d);
+		assertEquals(0.00567, gamma, 0.0001d);
+		assertEquals(0.05557, vega, 0.0001d);
+		assertEquals(-0.02206, theta, 0.0001d);
+		assertEquals(-0.00780, rho, 0.0001d);
+	}
+	
+	@Test
 	public void testBjerkStensCall1() {
 		// Result       /  Online calculator
 		// ---------------------------------------------
