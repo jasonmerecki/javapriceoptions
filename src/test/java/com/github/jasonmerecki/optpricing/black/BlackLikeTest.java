@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-// http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
-
 public class BlackLikeTest {
 
 	@Test
@@ -64,6 +62,7 @@ public class BlackLikeTest {
 	@Test
 	public void testBsCallGreeks() {
 		
+		// online calculator comparisons
 		// http://www.cboe.com/framed/IVolframed.aspx?content=http%3a%2f%2fcboe.ivolatility.com%2fcalc%2findex.j%3fcontract%3dAE172F0B-BFE3-4A3D-B5A3-6085B2C4F088&sectionName=SEC_TRADING_TOOLS&title=CBOE%20-%20IVolatility%20Services
 		// delta = 0.4198, gamma = 0.0057, vega = 1.3414, theta = -0.4505, rho = 0.4027
 		// http://www.option-price.com/
@@ -79,8 +78,8 @@ public class BlackLikeTest {
 		double v = 0.20d;
 		String type = "C";
 		double delta = BlackLike.bsDelta(type, s, k, v, t, r, q);
-		double gamma = BlackLike.bsGamma(type, s, k, v, t, r, q);
-		double vega = BlackLike.bsVega(type, s, k, v, t, r, q);
+		double gamma = BlackLike.bsGamma(s, k, v, t, r, q);
+		double vega = BlackLike.bsVega(s, k, v, t, r, q);
 		double theta = BlackLike.bsTheta(type, s, k, v, t, r, q);
 		double rho = BlackLike.bsRho(type, s, k, v, t, r, q);
 		System.out.println("testBsCallGreeks"
@@ -99,6 +98,7 @@ public class BlackLikeTest {
 	@Test
 	public void testBsPutGreeks() {
 		
+		// online calculator comparisons
 		// http://www.cboe.com/framed/IVolframed.aspx?content=http%3a%2f%2fcboe.ivolatility.com%2fcalc%2findex.j%3fcontract%3dAE172F0B-BFE3-4A3D-B5A3-6085B2C4F088&sectionName=SEC_TRADING_TOOLS&title=CBOE%20-%20IVolatility%20Services
 		// delta = -0.0415, gamma = 0.0057, vega = 0.0556, theta = -0.0221, rho = -0.0078
 		// http://www.fintools.com/resources/online-calculators/options-calcs/options-calculator/
@@ -112,8 +112,8 @@ public class BlackLikeTest {
 		double v = 0.25d;
 		String type = "P";
 		double delta = BlackLike.bsDelta(type, s, k, v, t, r, q);
-		double gamma = BlackLike.bsGamma(type, s, k, v, t, r, q);
-		double vega = BlackLike.bsVega(type, s, k, v, t, r, q);
+		double gamma = BlackLike.bsGamma(s, k, v, t, r, q);
+		double vega = BlackLike.bsVega(s, k, v, t, r, q);
 		double theta = BlackLike.bsTheta(type, s, k, v, t, r, q);
 		double rho = BlackLike.bsRho(type, s, k, v, t, r, q);
 		System.out.println("testBsPutGreeks"

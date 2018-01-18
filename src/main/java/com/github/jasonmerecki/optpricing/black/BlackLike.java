@@ -130,7 +130,7 @@ public class BlackLike {
 	}
 	
 	// Greeks (generally follows the macroption.com spreadsheet formula)
-	public static double bsVega (String type, double s, double k, double v,
+	public static double bsVega (double s, double k, double v,
 			double t, double r, double q) {
 		double d1pdf = d1pdf(s, k, v, t, r, q);
 		double drq = Math.exp(-q*t);
@@ -169,7 +169,7 @@ public class BlackLike {
 		return delta;
 	}
 	
-	public static double bsGamma (String type, double s, double k, double v,
+	public static double bsGamma (double s, double k, double v,
 			double t, double r, double q) {
 		double drq = Math.exp(-q*t);
 		double drd = (s * v * Math.pow(t, 0.5));
@@ -230,13 +230,12 @@ public class BlackLike {
 	public static double bsImpliedVol(String type, double p, double s, 
 			double k, double r, double t, double v, double q) {
 		v = v == 0d ? 0.5 : v;
-		double errlimit = IV_PRECISION;
 		double maxloops = 100;
-		double dv = errlimit + 1;
+		double dv = IV_PRECISION + 1;
 		double n = 0;
-		while (Math.abs(dv) > errlimit && n < maxloops) {
+		while (Math.abs(dv) > IV_PRECISION && n < maxloops) {
 			double difval = priceBlackScholes(type, s, k, t, v, r, q) - p;
-			double v1 = bsVega(type, s, k, v, t, r, q) / 0.01;
+			double v1 = bsVega(s, k, v, t, r, q) / 0.01;
 			dv = difval / v1;
 			v = v - dv;
 			n++;
