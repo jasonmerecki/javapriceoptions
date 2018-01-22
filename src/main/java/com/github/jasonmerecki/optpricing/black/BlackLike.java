@@ -172,7 +172,7 @@ public class BlackLike {
 	public static double bsGamma (double s, double k, double v,
 			double t, double r, double q) {
 		double drq = Math.exp(-q*t);
-		double drd = (s * v * Math.pow(t, 0.5));
+		double drd = (s * v * Math.sqrt(t));
 		double d1pdf = d1pdf(s, k, v, t, r, q);
 		double gamma = (drq / drd)  * d1pdf;
 	    return gamma;
@@ -229,7 +229,7 @@ public class BlackLike {
 	// Implied vol
 	public static double bsImpliedVol(String type, double p, double s, 
 			double k, double r, double t, double v, double q) {
-		v = v == 0d ? 0.5 : v;
+		v = v > 0d ? v : 0.5;
 		double maxloops = 100;
 		double dv = IV_PRECISION + 1;
 		double n = 0;
